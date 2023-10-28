@@ -1,0 +1,14 @@
+# Maven specific files
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+release.properties
+.mvn/
+
+# Visual Studio Code specific files
+.vscode/
+.vscodeignore
+
+# OS generated files
+.DS_Store
+Thumbs.db
