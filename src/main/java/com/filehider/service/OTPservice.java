@@ -26,7 +26,6 @@ public class OTPservice {
         String subject = "Email verification otp:FileHider";
         String from  = "lunaticfridge27@gmail.com";
 
-
         Properties properties = System.getProperties();
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "465");
@@ -39,7 +38,7 @@ public class OTPservice {
                 return new PasswordAuthentication("lunaticfridge27@gmail.com", "ojzotyxvnqyucivy");
             }
         });
-        //Step 2 - send compose message
+        //Step 2 - compose message
         MimeMessage  mimeMessage = new MimeMessage(session);
         try {
             mimeMessage.setFrom(from);

@@ -45,4 +45,18 @@ public class UserDAO {
         MyConnection.closeConnection();
         return flag;
     }
+
+    public static String userName(String email) throws SQLException{
+        Connection con = MyConnection.getConenction();
+        String query = "select name from users where email=?";
+        PreparedStatement pstmt = con.prepareStatement(query);
+        pstmt.setString(1, email);
+        ResultSet rs = pstmt.executeQuery();
+        String name = "";
+        while (rs.next()) {
+            name = rs.getString(1);
+        }
+        MyConnection.closeConnection();
+        return name;
+    }
 }

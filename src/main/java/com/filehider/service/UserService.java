@@ -29,4 +29,14 @@ public class UserService {
         }
         return 2;
     }
+
+    public static String getUserName(String email){
+        String name = "";
+        try {
+            name = UserDAO.userName(email);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return name;
+    }
 }

@@ -41,7 +41,8 @@ public class WelcomeScreen {
             case 1: System.out.println("Passwords do not match");
             break;
 
-            case 2: //TO-DO  
+            case 2: String userName = UserService.getUserName(email);
+            UserView.home(email, userName);
             break;
         }
     }
