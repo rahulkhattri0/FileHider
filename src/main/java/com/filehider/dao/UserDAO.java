@@ -29,14 +29,20 @@ public class UserDAO {
         pstmt.setString(1, user.getEmail());
         pstmt.setString(2, user.getName());
         pstmt.setString(3, user.getPassword());
-        return pstmt.executeUpdate();//returns number of rows affected - in our case will be 1
+        int rowsAffected = pstmt.executeUpdate();
+        MyConnection.closeConnection();
+        return rowsAffected;//returns number of rows affected - in our case will be 1
     }
-    public static void main(String[] args) {
-        try {
-            System.out.println(saveUser(new User("rahul2", "hey5@hey.com", "123456")));
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+
+    public static boolean isPasswordMatch(String email,String password) throws SQLException{
+        Connection con = MyConnection.getConenction();
+        String query = "select * from users where email=? and password=?";
+        PreparedStatement pstmt = con.prepareStatement(query);
+        pstmt.setString(1, email);
+        pstmt.setString(2, password);
+        ResultSet rs = pstmt.executeQuery();
+        boolean flag = rs.next() ? true : false;
+        MyConnection.closeConnection();
+        return flag;
     }
 }

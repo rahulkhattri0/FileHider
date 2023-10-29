@@ -19,7 +19,6 @@ public class MyConnection {
              */
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/FileHider", "root", "root");
-            System.out.println("DB Connected");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e){
@@ -31,7 +30,6 @@ public class MyConnection {
     public static void closeConnection(){
         try {
             connection.close();
-            System.out.println("Connection closeed");
         } catch (SQLException e) {
             System.out.println("some error while closing connection");
             e.printStackTrace();

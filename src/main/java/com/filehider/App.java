@@ -1,5 +1,6 @@
 package com.filehider;
 
+
 import com.filehider.views.WelcomeScreen;
 
 /**
@@ -8,7 +9,7 @@ import com.filehider.views.WelcomeScreen;
  */
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) 
     {
         WelcomeScreen ob = new WelcomeScreen();
         ob.welcome();
