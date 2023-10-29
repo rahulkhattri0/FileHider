@@ -6,17 +6,13 @@ import com.filehider.dao.UserDAO;
 import com.filehider.models.User;
 
 public class UserService {
-    public static boolean saveUser(String name,String email,String password){
+    public static void saveUser(String name,String email,String password){
         try {
-            if(UserDAO.isUserExists(email)) return false;
-            else {
-                User user = new User(name, email, password);
-                UserDAO.saveUser(user);
-            }
+            User user = new User(name, email, password);
+            UserDAO.saveUser(user);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return true;
     }
 
     /*

@@ -1,6 +1,8 @@
 package com.filehider.views;
 import java.util.Scanner;
 
+import com.filehider.service.GenerateOTP;
+import com.filehider.service.OTPservice;
 import com.filehider.service.UserService;
 
 public class WelcomeScreen {
@@ -43,5 +45,26 @@ public class WelcomeScreen {
             break;
         }
     }
-    private void signUp(){}
+    private void signUp(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Name");
+        String name = sc.nextLine();
+        System.out.println("Enter Email");
+        String email = sc.nextLine();
+        System.out.println("Enter password");
+        String password = sc.nextLine();
+        String otp = GenerateOTP.getOTP();
+        boolean isEmailSent = OTPservice.sendOTP(otp, email, name);
+        if(!isEmailSent){
+            System.out.println("User already exists! Please sign in");
+        }
+        else{
+            System.out.println("An email verification OTP has been sent to your email,please enter that OTP");
+            String otpInput = sc.nextLine();
+            if(otpInput.equals(otp)){
+                UserService.saveUser(name, email, password);
+            }
+            System.out.println("User created successfully!");
+        }
+    }
 }
