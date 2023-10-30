@@ -1,11 +1,11 @@
 package com.filehider.models;
 
 public class Data {
-    private String id;
+    private int id;
     private String name;
     private String path;
 
-    public Data(String id,String name,String path){
+    public Data(int id,String name,String path){
         this.id = id;
         this.name = name;
         this.path = path;
@@ -16,7 +16,7 @@ public class Data {
         this.path = path;
     }
 
-    public String getId(){
+    public int getId(){
         return this.id;
     }
 

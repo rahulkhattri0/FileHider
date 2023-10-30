@@ -44,6 +44,9 @@ public class WelcomeScreen {
             case 2: String userName = UserService.getUserName(email);
             UserView.home(email, userName);
             break;
+
+            default : System.out.println("something went wrong");
+            break;
         }
     }
     private void signUp(){
@@ -55,9 +58,12 @@ public class WelcomeScreen {
         System.out.println("Enter password");
         String password = sc.nextLine();
         String otp = GenerateOTP.getOTP();
-        boolean isEmailSent = OTPservice.sendOTP(otp, email, name);
-        if(!isEmailSent){
+        int EmailStatus = OTPservice.sendOTP(otp, email, name);
+        if(EmailStatus == 0){
             System.out.println("User already exists! Please sign in");
+        }
+        else if(EmailStatus == 1){
+            System.out.println("Could not Send email.Please try again later");
         }
         else{
             System.out.println("An email verification OTP has been sent to your email,please enter that OTP");
@@ -65,7 +71,9 @@ public class WelcomeScreen {
             if(otpInput.equals(otp)){
                 UserService.saveUser(name, email, password);
             }
-            System.out.println("User created successfully!");
+            else{
+                System.out.println("Wrong otp!");
+            }
         }
     }
 }

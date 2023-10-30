@@ -53,9 +53,8 @@ public class UserDAO {
         pstmt.setString(1, email);
         ResultSet rs = pstmt.executeQuery();
         String name = "";
-        while (rs.next()) {
-            name = rs.getString(1);
-        }
+        rs.next();
+        name = rs.getString(1);
         MyConnection.closeConnection();
         return name;
     }

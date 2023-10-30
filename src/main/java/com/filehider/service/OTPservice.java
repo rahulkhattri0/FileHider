@@ -15,9 +15,14 @@ import javax.mail.internet.MimeMessage;
 import com.filehider.dao.UserDAO;
 
 public class OTPservice {
-    public static boolean sendOTP(String otp,String email,String name){
+    /*
+     * 0 - user exists
+     * 1 - some mail related issue
+     * 2 - email sent sucessfully
+     */
+    public static int sendOTP(String otp,String email,String name){
         try {
-            if(UserDAO.isUserExists(email)) return false;
+            if(UserDAO.isUserExists(email)) return 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -50,9 +55,11 @@ public class OTPservice {
             mimeMessage.setText(message);
             //step - 3 send email 
             Transport.send(mimeMessage); //Transport is an abstract class used to send emails
+            
+            return 2;
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-        return true;
+        return 1;
     }
 }

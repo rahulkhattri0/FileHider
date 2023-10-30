@@ -10,6 +10,7 @@ public class UserService {
         try {
             User user = new User(name, email, password);
             UserDAO.saveUser(user);
+            System.out.println("User created successfully!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -24,10 +25,11 @@ public class UserService {
         try {
             if(!UserDAO.isUserExists(email)) return 0;
             else if(!UserDAO.isPasswordMatch(email, password)) return 1;
+            else return 2;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return 2;
+        return 0;
     }
 
     public static String getUserName(String email){
