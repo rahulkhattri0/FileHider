@@ -5,13 +5,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MyConnection {
-    public static Connection connection;
+    private static Connection connection;
     /*
      *  dont want to create objects everytime we need to get this connection 
      * so keeping everything static
      */
 
-    public static Connection getConenction(){
+    public static Connection getConnection(){
         try {
             /*
              * runs the staticblock and loads the driver 
@@ -35,7 +35,4 @@ public class MyConnection {
             e.printStackTrace();
         }
     }   
-    public static void main(String[] args) {
-        getConenction();
-    }
 }

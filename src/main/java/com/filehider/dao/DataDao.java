@@ -21,7 +21,7 @@ public class DataDao {
         List<Data> files = new ArrayList<>();
         // can do without inner join if we take userId as an argument in this function,but i wanted to use joins
         String query = "select d.dataId,d.name,d.path from users as u Inner join data as d on u.id = d.userId where u.email = ?";
-        Connection con = MyConnection.getConenction();
+        Connection con = MyConnection.getConnection();
         PreparedStatement pstmt = con.prepareStatement(query);
         pstmt.setString(1, email);
         ResultSet rs = pstmt.executeQuery();
@@ -36,7 +36,7 @@ public class DataDao {
     }
     public static void hideFile(Data data,String email) throws SQLException, IOException{
         //first get id of user - can skip this if we directly pass id - but ok
-        Connection con = MyConnection.getConenction();
+        Connection con = MyConnection.getConnection();
         String query1 = "select id from users where email=?";
         PreparedStatement pstmt = con.prepareStatement(query1);
         pstmt.setString(1, email);
@@ -60,7 +60,7 @@ public class DataDao {
     }
 
     public static void unhide(int id) throws SQLException, IOException{
-        Connection con = MyConnection.getConenction();
+        Connection con = MyConnection.getConnection();
         String query1 = "select path,bin_data from data where dataId=?";
         PreparedStatement pstmt = con.prepareStatement(query1);
         pstmt.setInt(1, id);

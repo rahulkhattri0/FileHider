@@ -10,7 +10,7 @@ import com.filehider.models.User;
 
 public class UserDAO {
     public static boolean isUserExists(String email) throws SQLException {
-        Connection con = MyConnection.getConenction();
+        Connection con = MyConnection.getConnection();
         /*
          * parameterized queries save us from sql injection attacks
          */
@@ -23,7 +23,7 @@ public class UserDAO {
         return flag;
     }
     public static int saveUser(User user) throws SQLException{
-        Connection con = MyConnection.getConenction();
+        Connection con = MyConnection.getConnection();
         String query = "insert into users(id,email,name,password) values(default,?,?,?)";
         PreparedStatement pstmt = con.prepareStatement(query);
         pstmt.setString(1, user.getEmail());
@@ -35,7 +35,7 @@ public class UserDAO {
     }
 
     public static boolean isPasswordMatch(String email,String password) throws SQLException{
-        Connection con = MyConnection.getConenction();
+        Connection con = MyConnection.getConnection();
         String query = "select * from users where email=? and password=?";
         PreparedStatement pstmt = con.prepareStatement(query);
         pstmt.setString(1, email);
@@ -47,7 +47,7 @@ public class UserDAO {
     }
 
     public static String userName(String email) throws SQLException{
-        Connection con = MyConnection.getConenction();
+        Connection con = MyConnection.getConnection();
         String query = "select name from users where email=?";
         PreparedStatement pstmt = con.prepareStatement(query);
         pstmt.setString(1, email);
